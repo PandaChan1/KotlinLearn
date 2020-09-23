@@ -1,3 +1,101 @@
 fun main() {
-    println("Hello world!");
+    println("Hello world!")
+    println("1+3")
+    sum(1,3)
+    println("2+2")
+    sum1(2,2)
+    println("3+3")
+    sum2(3,3)
+    println("6+6")
+    printsum(6,6)
+    println("10+10")
+    printsum1(10,10)
+    //字符串模板
+    stringEX(6)
+    //条件表达式
+    println("0和42的最大值是${maxof(0,42)}")
+    println("0和42的最大值是${maxof1(0,42)}")
+    //空值和null检测
+    printProduct("a","7")
+    printProduct("6","7")
+    //类型检测与自动类型转换
+    printLength("pandachan")
+    printLength(744631199)
+    printLength(listOf(Any()))
+}
+fun sum(x:Int,y:Int):Int{
+    return x+y
+}
+//表达式作为函数体，返回类型自动判断
+fun sum1(x:Int,y:Int) = x+y
+//public方法必须明确给出返回类型
+public fun sum2(i:Int,j:Int):Int=i+j
+
+//无返回值的函数，类似于java的void
+//void等同于Unit
+fun printsum(a:Int,b:Int):Unit{
+    println(a+b)
+}
+
+//如果返回类型是Unit类型，则可以省略（public方法同理）
+public fun printsum1(a:Int,b:Int){
+    println(a+b)
+}
+
+fun stringEX(a:Int){
+    //定义只读局部变量 val
+    //可重新赋值的变量使用 var关键字
+    /*
+    var s:Int=2 //立即赋值
+    var s=6 //自动推断出 Int 类型
+    val c:Int //没有明确初始值类型不能省略
+    c=3 //明确赋值
+    */
+    var i=a;
+    val s1="i is $i"
+
+    i=2
+    val s2="${s1.replace("is","was")},but now is $i"
+            println(s2)
+}
+
+//条件表达式
+fun maxof(a:Int,b:Int):Int{
+    if (a>b){
+        return a
+    }else{
+        return b
+    }
+}
+//if也可做表达式
+fun maxof1(a:Int,b:Int)=if (a>b)a else b
+
+//空值与null检测
+fun parseInt(str:String):Int ?{
+    return str.toIntOrNull()
+}
+fun printProduct(str1:String,str2:String){
+    val x=parseInt(str1)
+    val y=parseInt(str2)
+    if (x!=null&&y!=null){
+        println(x*y)
+    }else{
+        println("'$str1' or '$str2' is not a number")
+    }
+}
+//类型检测与自动类型转换
+/**
+ * is运算符检测一个表达式是否某类型的一个实例。
+ * 如果一个不可变的局部变量或者属性已经判断出为某类型，
+ * 那么检测后的分支中可以直接当作该类型使用，无需显式转换
+ */
+fun getStringLength(obj:Any):Int?{
+    if (obj is String){
+        //obj 在该条件分支中自动转换成 String
+        return obj.length
+    }
+    return null
+}
+fun printLength(obj:Any){
+    println("'$obj' string length is ${getStringLength(obj)?:"...err,not a string"}")
 }
