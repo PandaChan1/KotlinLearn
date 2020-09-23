@@ -96,6 +96,27 @@ fun getStringLength(obj:Any):Int?{
     }
     return null
 }
+
+/**
+ * ?: 复合符号
+ * 例： foo ？：bar
+ * foo！=null  返回foo
+ * foo==null  返回bar
+ * --------------------------
+ * 其他的复合符号例如： ？ ？. !! !!.
+ *   ?    声明变量可空，即可赋null
+ *   !!   当前对象为空时执行
+ *
+ *   "?"加在变量名后，系统在任何情况不会报它的空指针异常。
+ *   "!!"加在变量名后，如果对象为null，那么系统一定会报异常。
+ *-----------------------------------------------------
+ *   ?.   当？.左边不为空时，调用.后面的方法；为空时返回null
+ *   例：var str:String? =null
+ *   直接调用 str.length 肯定报错
+ *   传统方法需要  if 判空
+ *   而使用  str?.length  可以更简单
+ *   !!.  与 ?. 类似 !!.在左边为空时直接报 NPE错误；不为空时调用  .  后的方法
+ */
 fun printLength(obj:Any){
     println("'$obj' string length is ${getStringLength(obj)?:"...err,not a string"}")
 }
