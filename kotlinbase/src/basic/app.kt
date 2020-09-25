@@ -1,5 +1,6 @@
+package basic
+
 fun main() {
-    println("Hello world!")
     println("1+3")
     sum(1,3)
     println("2+2")
@@ -84,8 +85,8 @@ fun parseInt(str:String):Int ?{
     return str.toIntOrNull()
 }
 fun printProduct(str1:String,str2:String){
-    val x=parseInt(str1)
-    val y=parseInt(str2)
+    val x= parseInt(str1)
+    val y= parseInt(str2)
     if (x!=null&&y!=null){
         println(x*y)
     }else{
@@ -127,7 +128,7 @@ fun getStringLength(obj:Any):Int?{
  *   !!.  与 ?. 类似 !!.在左边为空时直接报 NPE错误；不为空时调用  .  后的方法
  */
 fun printLength(obj:Any){
-    println("'$obj' string length is ${getStringLength(obj)?:"...err,not a string"}")
+    println("'$obj' string length is ${getStringLength(obj) ?:"...err,not a string"}")
 }
 
 
