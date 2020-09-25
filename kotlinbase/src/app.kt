@@ -22,6 +22,15 @@ fun main() {
     printLength("pandachan")
     printLength(744631199)
     printLength(listOf(Any()))
+    //for循环
+    forEx()
+    //when表达式
+    println("when表达式")
+    println(whenEx(1))
+    //使用区间
+    rangeEx()
+    //lambda表达式过滤,映射
+    lambdaEx()
 }
 fun sum(x:Int,y:Int):Int{
     return x+y
@@ -120,3 +129,89 @@ fun getStringLength(obj:Any):Int?{
 fun printLength(obj:Any){
     println("'$obj' string length is ${getStringLength(obj)?:"...err,not a string"}")
 }
+
+
+//-------------------------------------------------------------
+
+//for循环
+fun forEx(){
+    val items= listOf("banana","apple","charry","peach")
+    println("直接访问元素")
+    for (item in items){
+        print(item+",")
+    }
+    println()
+    println("下标访问")
+    for (index in items.indices){
+        println("index at $index is ${items[index]}")
+    }
+    //while循环
+    println()
+    println("while循环")
+    var index=0
+    while (index<items.size){
+        println("index at $index is ${items[index]}")
+        index++
+    }
+
+}
+
+//-----------------------------------------------------
+
+//when表达式，类似于java的switch
+fun whenEx(obj:Any):String=
+    when(obj){
+        1 -> "one"
+        "hello" -> "String"
+        is Long -> "Long"
+        !is Long -> "not is Long"
+        else -> "unknown"
+    }
+
+//--------------------------------------------------
+//使用区间range
+fun rangeEx(){
+    val items= listOf("a","b","c","h","k")
+    for (item in items){
+        print(item+" ,")
+    }
+//检测数字是否在指定区间
+    val x=10
+    val y=9
+    println()
+    if (x in 1..y+1){
+        println("fits in range")
+    }
+    //检测数字书否在区间外
+    if (-1 !in 0..items.lastIndex){
+        println("-1 is out of range")
+    }
+    if (items.size !in items.indices){
+        println("list size is out of list indices,too")
+    }
+    //区间迭代
+    println("区间迭代")
+    for (i in 1..5){
+        println(i)
+    }
+    println("数列迭代")
+    //数列迭代
+    for (i in 1..10 step 2){
+            print(i)
+    }
+    println()
+    for (i in 9 downTo 0 step 3){
+        println(i)
+    }
+}
+//使用lambda表达式过滤（filter）和映射（map）集合
+fun lambdaEx(){
+    var fruits= listOf("apple","pear","peach","charry","av0cado")
+    fruits
+            .filter { it.startsWith("a") }
+            .sortedBy { it }
+            .map { it.toUpperCase() }
+            .forEach { println(it) }
+}
+
+
