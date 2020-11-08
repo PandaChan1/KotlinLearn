@@ -1,5 +1,6 @@
 package basic
 
+
 fun main() {
     println("1+3")
     sum(1,3)
@@ -32,6 +33,9 @@ fun main() {
     rangeEx()
     //lambda表达式过滤,映射
     lambdaEx()
+    var a:Int = 0;
+    var b:Int = 2
+    a = b.also { b = a };
 }
 fun sum(x:Int,y:Int):Int{
     return x+y
@@ -204,6 +208,7 @@ fun rangeEx(){
     for (i in 9 downTo 0 step 3){
         println(i)
     }
+
 }
 //使用lambda表达式过滤（filter）和映射（map）集合
 fun lambdaEx(){
@@ -214,5 +219,6 @@ fun lambdaEx(){
             .map { it.toUpperCase() }
             .forEach { println(it) }
 }
+
 
 
